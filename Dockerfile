@@ -5,7 +5,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q git autoconf screen sud
 RUN useradd -d /opt/Espressif -m -s /bin/bash esp8266
 RUN echo "esp8266 ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/esp8266
 RUN chmod 0440 /etc/sudoers.d/esp8266
-RUN su esp8266 -c "cd /opt/Espressif/ && git clone -b lx106 git://github.com/jcmvbkbc/crosstool-NG.git"
+RUN su esp8266 -c "cd /opt/Espressif/ && git clone -b lx106-g++ git://github.com/jcmvbkbc/crosstool-NG.git"
 RUN su esp8266 -c "cd /opt/Espressif/crosstool-NG && ./bootstrap && ./configure --prefix=`pwd` && make && sudo make install"
 RUN su esp8266 -c "cd /opt/Espressif/crosstool-NG && ./ct-ng xtensa-lx106-elf"
 RUN su esp8266 -c "cd /opt/Espressif/crosstool-NG && ./ct-ng build"
